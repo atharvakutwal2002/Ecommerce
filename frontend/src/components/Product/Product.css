@@ -1,0 +1,15 @@
+.product{
+    display: flex;
+    flex-direction: column;
+    padding:3rem 5rem;
+    align-items: center;
+    background-color: rgb(46, 36, 36);
+    color: aliceblue;
+    margin:1rem 2rem ;
+    
+
+}
+
+.productButton{
+    width: 5rem;
+}
