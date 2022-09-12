@@ -1,15 +1,19 @@
-.product{
-    display: flex;
-    flex-direction: column;
-    padding:3rem 5rem;
-    align-items: center;
-    background-color: rgb(46, 36, 36);
-    color: aliceblue;
-    margin:1rem 2rem ;
-    
-
+.product {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 5rem;
+  align-items: center;
+  background-color: rgb(46, 36, 36);
+  color: aliceblue;
+  margin: 1rem 2rem;
 }
 
-.productButton{
-    width: 5rem;
+.productButton {
+  width: 5rem;
+  cursor: pointer;
+}
+
+
+.productHeading,.image,.price,.productButton{
+    margin: 1rem 2rem;
 }

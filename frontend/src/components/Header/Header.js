@@ -8,6 +8,7 @@ function Header() {
       <div className="links">
         <a className="link" href="#">Home</a>
         <a className="link" href="#">Contact</a>
+        <a className="link" href="#">Login / signup</a>
       </div>
     </div>
   );
