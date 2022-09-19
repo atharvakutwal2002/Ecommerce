@@ -1,0 +1,28 @@
+[
+  {
+    "name": "mobile",
+    "imageLink": "link",
+    "price": 23000,
+    "details": "6.51 Inch 16.5cm HD+ Puch-hole Display with 1600x720 pixels."
+  },
+  {
+    "name": "laptop",
+    "imageLink": "link",
+    "price": 150000,
+    "details": "ASUS ROG Zephyrus G15(2022), 15.6 (39.62 cms) 2K WQHD 240Hz/3ms, AMD Ryzen 7 6800HS"
+  },
+  {
+    "name": "watch",
+    "imageLink": "link",
+    "price": 4000,
+    "details": "Grab or gone deals from Noise, pTron, Tagg & more"
+  },
+  {
+    "name": "headphones",
+    "imageLink": "link",
+    "price": 1500,
+    "details": "boAt Rockerz 261 in Ear Wireless Earphones with mic(Jazzy Blue boAt Rockerz 261 in Ear Wireless Earphones with mic(Jazzy Blue)"
+  },
+  
+  { "test": "test product" }
+]

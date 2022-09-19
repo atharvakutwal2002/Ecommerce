@@ -17,11 +17,11 @@ function Products() {
   ];
   return (
     <div className="productSection">
-      {productArray.map((e) => (
+      {productArray.map((e, key) => (
         <Product
           heading={e.productHeading}
           link={e.imageLink}
-          price={e.price}
+          price={e.price} key={key}
         />
       ))}
     </div>
