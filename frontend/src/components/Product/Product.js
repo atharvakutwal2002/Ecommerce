@@ -8,6 +8,7 @@ function Product(props) {
         <div className="image">Image</div>
         <div className="price">{props.price}</div>
         <button className='productButton'>Buy Now</button>
+        <button className='productButton'>Add to cart</button>
     </div>
   )
 }

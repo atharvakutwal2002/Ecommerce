@@ -3,8 +3,11 @@ const app = express();
 const productController = require("./controllers/productController");
 const userController = require("./controllers/userController");
 const cartController = require("./controllers/cartController");
+const authController= require('./controllers/authController')
 
 app.use(express.json());
+
+app.route("/signup").post(authController.signup)
 
 app
   .route("/products")
