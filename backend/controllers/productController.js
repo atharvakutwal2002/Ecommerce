@@ -18,3 +18,12 @@ exports.postProducts = async (req, res) => {
       res.status(400).send(error);
     }
   };
+
+exports.deleteProduct= async(req,res)=>{
+  try {
+    await Product.findByIdAndDelete(req.body.id);
+    return res.status(201).send("Product deleted successfully ")
+  } catch (error) {
+    return res.status(401).send(error);
+  }
+}
