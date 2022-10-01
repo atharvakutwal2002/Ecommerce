@@ -55,36 +55,43 @@ exports.protect = async (req, res, next) => {
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
+  
   if (!token) {
     res.status(401).send("You are not logged in ");
   }
-  const decoded = await util.promisify(jwt.verify)(
-    token,
-    process.env.JWT_SECRET
-  );
-  console.log(decoded);
 
-  // jwt.verify(token, process.env.JWT_SECRET, function(err, decoded){
-  //   if(err){
-  //     return res.status(400).send("error");
-  //   }
-  //   console.log(decoded);
-  //   res.status(201).send("fulfilled");
-  // })
-
-  const currentUser = await User.findById(decoded.id);
-
-  if (!currentUser) {
-    return res
-      .status(401)
-      .send("The user belonging to the token is no longer valid .");
+  try {
+    const decoded = await util.promisify(jwt.verify)(
+      token,
+      process.env.JWT_SECRET
+    );
+  
+    const currentUser = await User.findById(decoded.id);
+    
+    if (!currentUser) {
+      return res
+        .status(401)
+        .send("The user belonging to the token is no longer valid .");
+    }
+  
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      res.status(401).send("password changed ");
+    }
+    
+    req.user = currentUser;
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({message: "Invalid Credentials!"})
   }
 
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    res.status(401).send("password changed ");
-  }
-
-  req.user = currentUser;
-  // console.log(token)
   next();
+};
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).send("Unauthorized access . ");
+    }
+    next();
+  };
 };

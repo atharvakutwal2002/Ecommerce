@@ -14,12 +14,17 @@ app
   .route("/products")
   .get(productController.getProducts)
   .post(productController.postProducts)
-  .delete(authController.protect, productController.deleteProduct);
+  .delete(productController.deleteProduct);
 
 app
   .route("/users")
   .post(userController.createUser) 
-  .get(userController.getUsers);
+  .get(userController.getUsers)
+  .delete(userController.deleteUser);
+
+
+app.route("/user/:id").delete(userController.deleteUser);
+
 
 // app
 //   .route("/cart")
@@ -29,6 +34,7 @@ app
 app
   .route("/cart/:id")
   .get(authController.protect, cartController.getCartItems)
-  .patch(authController.protect, cartController.addItemTocart);
+  .patch(authController.protect,cartController.addItemTocart)
+  .delete(cartController.removeItemFromCart);
 
 module.exports = app;
