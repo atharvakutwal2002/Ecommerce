@@ -4,8 +4,12 @@ const productController = require("./controllers/productController");
 const userController = require("./controllers/userController");
 const cartController = require("./controllers/cartController");
 const authController = require("./controllers/authController");
+const errorHandler = require('./middlewares/error-handler')
 
+//middlewares
 app.use(express.json());
+app.use(errorHandler);
+
 
 app.route("/signup").post(authController.signup);
 app.route("/login").post(authController.login);
