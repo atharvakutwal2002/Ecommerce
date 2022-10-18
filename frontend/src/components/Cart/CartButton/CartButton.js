@@ -1,14 +1,12 @@
 import React from "react";
 import { useContext } from "react";
-import CartContext from "../../../Store/cart-context";
+import CartContext from "../../../Store/new-cart-context";
 import CartIcon from "./CartIcon";
 import "./CartButton.css";
 
 const CartButton = (props) => {
   const cartctx = useContext(CartContext);
-  const numberOfCartItems = cartctx.items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);
+  const numberOfCartItems = cartctx.items.length
   return (
     <button className="button" onClick={props.onClick}>
       <span className="icon">

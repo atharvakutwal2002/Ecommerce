@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.css";
 import CartButton from "../Cart/CartButton/CartButton";
-import Cart from "../Cart/Cart";
+
+import LoginContext from "../../Store/login-context";
 
 function Header(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  
+ const logCtx=useContext(LoginContext)
+ console.log(logCtx.isLoggedIn)
+ 
   
 
+  
 
   const loggin = (
-    <a className="link" href="#">
+    <a  onClick={props.onShowLoginForm} className="link" href="#">
       Login / signup
     </a>
   );
-  
 
   return (
     <div className="header">
@@ -25,14 +29,13 @@ function Header(props) {
         <a className="link" href="#">
           Contact
         </a>
-        
+
         <div>
-          {isLoggedIn ? <CartButton onClick={props.onShowCart}/> : loggin}
+          {false ? <CartButton onClick={props.onShowCart} /> : loggin}
+          
           {/* <CartButton onClick={props.onShowCart}/> */}
+          
         </div>
-
-        
-
       </div>
     </div>
   );

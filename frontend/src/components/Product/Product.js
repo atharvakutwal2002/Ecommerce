@@ -1,21 +1,37 @@
-import React from 'react'
-import { useRef } from 'react';
-import './Product.css'
+import React from "react";
+import { useContext } from "react";
+
+import "./Product.css";
+import CartContext from "../../Store/new-cart-context";
 
 function Product(props) {
-  const submitHandler = event =>{
+  const cartCtx = useContext(CartContext);
+  const submitHandler = (event) => {
     event.preventDefault();
+    // const enteredAmount= amountInputRef.current.value ;
+    // const enteredAmountNumber= +enteredAmount;
+    const product = {
+      id: props.id,
+      heading: props.heading,
+      price: props.price,
+      link: props.link
+    };
+    cartCtx.addItem(product);
 
-  }
+    return product;
+  };
   return (
     <div className="product">
-        <div className="productHeading">{props.heading}</div>
-        <div className="image">Image</div>
-        <div className="price">{props.price}</div>
-        <button className='productButton'>Buy Now</button>
-        <button className='productButton' onClick={submitHandler}>Add to cart</button>
+      <div className="productHeading">{props.heading}</div>
+      <div className="imageContainer"><img className="image" src={props.link} alt="" /></div>
+      <div className="price">$ {props.price}</div>
+      
+
+      <button className="productButton" onClick={submitHandler}>
+        Add to cart
+      </button>
     </div>
-  )
+  );
 }
 
-export default Product
+export default Product;
