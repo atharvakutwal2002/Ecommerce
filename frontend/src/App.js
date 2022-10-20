@@ -10,22 +10,28 @@ import Products from "./components/Products/Products";
 import { CartContextProvider } from "./Store/new-cart-context";
 import { LoginContextProvider } from "./Store/login-context";
 import LoginContext from "./Store/login-context";
+import SignUpForm from "./components/Header/signupForm/SignUpForm";
 
 function App() {
-
-  const logCtx=useContext(LoginContext);
+  const logCtx = useContext(LoginContext);
 
   const [cartIsShown, setCartIsShown] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [formIsSubmit, setFormIsSubmit]= useState(false);
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [formIsSubmit, setFormIsSubmit] = useState(false);
   const [addressInputIsShown, setaddressInputIsShown] = useState(false);
 
-  const loginFormHanlder=()=>{
+  const loginSignUpFormHanlder = () => {
     setFormIsSubmit(false);
-    setShowLoginForm(false)
-  }
+    setShowLoginForm(false);
+    setShowSignUpForm(false);
+  };
+  const showSignUpFormHandler = () => {
+    setShowSignUpForm(true);
+  };
 
   const showLoginFormHandler = () => {
+    setShowSignUpForm(false);
     setShowLoginForm(true);
   };
   const showCartHandler = () => {
@@ -40,6 +46,9 @@ function App() {
   const hideAddressInputHandler = () => {
     setaddressInputIsShown(false);
   };
+  const logoutHandler = () => {
+    logCtx.logout();
+  };
   return (
     <LoginContextProvider>
       <CartContextProvider>
@@ -52,12 +61,18 @@ function App() {
             onClose={hideCartHandler}
           />
         )}
-        
-        {showLoginForm && <LoginForm onSubmit={loginFormHanlder} />}
-       
+
+        {showSignUpForm && (
+          <SignUpForm
+            onClickLogin={showLoginFormHandler}
+            onSubmit={loginSignUpFormHanlder}
+          />
+        )}
+        {showLoginForm && <LoginForm onSubmit={loginSignUpFormHanlder} />}
 
         <Header
-          onShowLoginForm={showLoginFormHandler}
+          onLogout={logoutHandler}
+          onShowSignUpForm={showSignUpFormHandler}
           onShowCart={showCartHandler}
         />
 

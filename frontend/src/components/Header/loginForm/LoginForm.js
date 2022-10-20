@@ -19,9 +19,9 @@ const LoginForm = (props) => {
 
     console.log(loginDetails)
     
-    logCtx.toggleLogin();
+    logCtx.login()
     console.log(logCtx)
-    props.onSubmit()
+    props.onSubmit();
   };
 
   return (

@@ -1,21 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import CartButton from "../Cart/CartButton/CartButton";
-
 import LoginContext from "../../Store/login-context";
 
 function Header(props) {
-  
- const logCtx=useContext(LoginContext)
- console.log(logCtx.isLoggedIn)
- 
-  
-
-  
-
+  const logCtx = useContext(LoginContext);
   const loggin = (
-    <a  onClick={props.onShowLoginForm} className="link" href="#">
+    <a onClick={props.onShowSignUpForm} className="link" href="#">
       Login / signup
+    </a>
+  );
+  const loggOut = (
+    <a onClick={props.onShowSignUpForm} className="link" href="#">
+      LogOut
     </a>
   );
 
@@ -23,19 +20,8 @@ function Header(props) {
     <div className="header">
       <h1 className="heading">Ecommerce</h1>
       <div className="links">
-        <a className="link" href="#">
-          Home
-        </a>
-        <a className="link" href="#">
-          Contact
-        </a>
-
-        <div>
-          {false ? <CartButton onClick={props.onShowCart} /> : loggin}
-          
-          {/* <CartButton onClick={props.onShowCart}/> */}
-          
-        </div>
+        <CartButton onClick={props.onShowCart} />
+        {logCtx.isLoggedIn ? loggOut : loggin}
       </div>
     </div>
   );

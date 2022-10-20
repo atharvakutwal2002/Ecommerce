@@ -2,21 +2,25 @@ import { createContext, useState } from "react";
 
 const LoginContext = createContext({
   isLoggedIn: false,
-  toggleLoginHandler: () => {},
+  login: () => {},
+  logout: () => {},
 });
 
 export function LoginContextProvider(props) {
   const [isloggedIn, setIsLoggedIn] = useState(false);
 
-  function toggleLoginHandler() {
-    setIsLoggedIn(prevLoginState=>{
-      return !prevLoginState
-    });
+  function loginHandler() {
+    setIsLoggedIn(true);
+  }
+
+  function logOutHandler() {
+    setIsLoggedIn(false);
   }
 
   const logContext = {
-    isloggedIn:isloggedIn,
-    toggleLogin: toggleLoginHandler,
+    isloggedIn: isloggedIn,
+    login: loginHandler,
+    logout: logOutHandler,
   };
 
   return (
