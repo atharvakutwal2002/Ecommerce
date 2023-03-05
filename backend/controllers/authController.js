@@ -55,7 +55,7 @@ exports.protect = async (req, res, next) => {
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
-  
+
   if (!token) {
     res.status(401).send("You are not logged in ");
   }
@@ -65,23 +65,23 @@ exports.protect = async (req, res, next) => {
       token,
       process.env.JWT_SECRET
     );
-  
+
     const currentUser = await User.findById(decoded.id);
-    
+
     if (!currentUser) {
       return res
         .status(401)
         .send("The user belonging to the token is no longer valid .");
     }
-  
+
     if (currentUser.changedPasswordAfter(decoded.iat)) {
       res.status(401).send("password changed ");
     }
-    
+
     req.user = currentUser;
   } catch (error) {
     console.log(error);
-    res.status(400).json({message: "Invalid Credentials!"})
+    res.status(400).json({ message: "Invalid Credentials!" });
   }
 
   next();
@@ -94,4 +94,16 @@ exports.restrictTo = (...roles) => {
     }
     next();
   };
+};
+
+exports.logout = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((tokenObj) => {
+      return tokenObj.token != req.token;
+    });
+    await req.user.save();
+    return res.status(200).json({ message: "logged out succesfully" });
+  } catch (error) {
+    return error;
+  }
 };

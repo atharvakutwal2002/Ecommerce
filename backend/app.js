@@ -1,34 +1,34 @@
 const express = require("express");
 const app = express();
 const productController = require("./controllers/productController");
+const orderController = require("./controllers/orderController");
 const userController = require("./controllers/userController");
 const cartController = require("./controllers/cartController");
 const authController = require("./controllers/authController");
-const errorHandler = require('./middlewares/error-handler')
+const errorHandler = require("./middlewares/error-handler");
 
 //middlewares
 app.use(express.json());
 app.use(errorHandler);
-
 
 app.route("/signup").post(authController.signup);
 app.route("/login").post(authController.login);
 
 app
   .route("/products")
-  .get(productController.getProducts)
+  .get(productController.getAllProducts)
   .post(productController.postProducts)
   .delete(productController.deleteProduct);
 
+// app.route("/products/:id").delete(productController.deleteProduct);
+
 app
   .route("/users")
-  .post(userController.createUser) 
+  .post(userController.createUser)
   .get(userController.getUsers)
   .delete(userController.deleteUser);
 
-
-app.route("/user/:id").delete(userController.deleteUser);
-
+// app.route("/user/:id").delete(userController.deleteUser);
 
 // app
 //   .route("/cart")
@@ -37,8 +37,14 @@ app.route("/user/:id").delete(userController.deleteUser);
 
 app
   .route("/cart/:id")
+  .post(authController.protect, cartController.addItemTocart)
   .get(authController.protect, cartController.getCartItems)
-  .patch(authController.protect,cartController.addItemTocart)
-  .delete(cartController.removeItemFromCart);
+  .delete(authController.protect,cartController.removeItemFromCart);
+// .patch(authController.protect, cartController.addItemTocart)
+
+app
+  .route("/order/:id")
+  .get(orderController.get_orders)
+  .post(orderController.checkout);
 
 module.exports = app;

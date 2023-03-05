@@ -13,12 +13,20 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "A product must have a price"],
   },
+  category: {
+    type: String,
+    required: true,
+  },
   details: {
     type: String,
+    required: true,
+  },
+  date_added: {
+    type: Date,
+    default: Date.now,
   },
 });
 
+const Product = mongoose.model("Product", productSchema);
 
-const Product= mongoose.model("Product", productSchema);
-
-module.exports=Product;
+module.exports = Product;

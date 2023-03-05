@@ -21,13 +21,17 @@ const userSchema = mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  passwordConfirm: {
-    type: String,
-    required: [true, "Please confirm your password"],
-    validate: function (el) {
-      return el === this.password;
-    },
-  },
+  // passwordConfirm: {
+  //   type: String,
+  //   required: [true, "Please confirm your password"],
+  //   validate: function (el) {
+  //     return el === this.password;
+  //   },
+  // },
+  register_date: {
+    type: Date,
+    default: Date.now
+},
   passwordChangedAt: Date,
 });
 
@@ -36,7 +40,7 @@ userSchema.pre("save", async function (next) {
 
   this.password = await bcrypt.hash(this.password, 12);
 
-  this.passwordConfirm = undefined;
+  // this.passwordConfirm = undefined;
 
   next();
 });
