@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 const app = express();
 const productController = require("./controllers/productController");
 const orderController = require("./controllers/orderController");
@@ -10,6 +11,7 @@ const errorHandler = require("./middlewares/error-handler");
 //middlewares
 app.use(express.json());
 app.use(errorHandler);
+app.use(cors());
 
 app.route("/signup").post(authController.signup);
 app.route("/login").post(authController.login);

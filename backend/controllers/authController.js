@@ -29,12 +29,12 @@ exports.signup = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(401).send("please provide an email and password ");
+    if (!username || !password) {
+      return res.status(401).send("please provide an username and password ");
     }
-    const user = await User.findOne({ email: email }).select("+password");
+    const user = await User.findOne({ username: username }).select("+password");
 
     if (!user || !(await user.correctPassword(password, user.password))) {
       return res.status(401).send("No autorized user ");
