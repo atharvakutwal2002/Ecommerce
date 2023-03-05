@@ -1,0 +1,68 @@
+.main {
+  background-color: rgb(234, 233, 229);
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.Large {
+  font-size: 40px;
+  font-weight: 800;
+  font-family: cursive;
+}
+.medium {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.button {
+  background-color: rgb(113, 127, 225);
+  color: white;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: 10px;
+  width: 100px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.button:hover {
+  background-color: white;
+  color: rgb(113, 127, 225);
+  border: 2px solid rgb(113, 127, 225);
+}
+
+.banner{
+    width: 30%;
+    object-fit: cover;
+}
+
+@media (max-width:768px) {
+    .content{
+        width: 40%;
+        padding-left: 20px;
+    }
+    .main{
+        gap: 20px;
+    }
+
+    .Large {
+        font-size: 20px;
+        
+      }
+      .medium {
+        font-size: 14px;
+        
+      }
+      .banner{
+        width: 100%;
+        overflow-x: hidden;
+      }
+}
