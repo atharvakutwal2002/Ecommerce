@@ -24,6 +24,8 @@ app
 
 // app.route("/products/:id").delete(productController.deleteProduct);
 
+app.route("/product/:id").get(productController.getSingleProduct)
+
 app
   .route("/users")
   .post(userController.createUser)

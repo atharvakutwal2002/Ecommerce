@@ -25,18 +25,14 @@ const userSchema = mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  // passwordConfirm: {
-  //   type: String,
-  //   required: [true, "Please confirm your password"],
-  //   validate: function (el) {
-  //     return el === this.password;
-  //   },
-  // },
+  image: {
+    type: String,
+  },
+
   register_date: {
     type: Date,
-    default: Date.now
-},
-  passwordChangedAt: Date,
+    default: Date.now,
+  },
 });
 
 userSchema.pre("save", async function (next) {

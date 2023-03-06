@@ -23,6 +23,7 @@ exports.signup = async (req, res, next) => {
     res.status(201).json({ token, newUser });
     next();
   } catch (err) {
+    console.log(err)
     res.status(401).send(err);
   }
 };

@@ -51,8 +51,20 @@ const addproductToCart = async (req, res) => {
     user,
   } = req;
   try {
-    
   } catch (error) {
-    res.status(500).json({message:"Internal server error !"})
+    res.status(500).json({ message: "Internal server error !" });
+  }
+};
+
+exports.getSingleProduct = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findOne({ _id: id });
+    if (!product) {
+      return res.status(201).json(message, "no such product found");
+    }
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).send(error);
   }
 };
