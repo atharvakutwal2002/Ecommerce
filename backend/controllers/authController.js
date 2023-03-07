@@ -23,7 +23,7 @@ exports.signup = async (req, res, next) => {
     res.status(201).json({ token, newUser });
     next();
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(401).send(err);
   }
 };
@@ -42,7 +42,7 @@ exports.login = async (req, res, next) => {
     }
     console.log(user);
     const token = signToken(user._id);
-    return res.status(201).json(token,user);
+    return res.status(201).json({ token, user });
   } catch (error) {
     res.status(400).send(error);
   }
