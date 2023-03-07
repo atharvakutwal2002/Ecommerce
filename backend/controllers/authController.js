@@ -42,7 +42,7 @@ exports.login = async (req, res, next) => {
     }
     console.log(user);
     const token = signToken(user._id);
-    return res.status(201).json(token);
+    return res.status(201).json(token,user);
   } catch (error) {
     res.status(400).send(error);
   }
