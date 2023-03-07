@@ -1,21 +1,22 @@
-import React from 'react'
-import classes from './Card.module.css'
-import men from './men.png'
+import React from "react";
+import classes from "./Card.module.css";
+import banner from "./banner.png";
+import { Link } from "react-router-dom";
 
-
-
-const Card = () => {
+const Card = (props) => {
   return (
-    <div className={classes.main}>
+    <Link to={`products/${props.category}`}>
+      <div className={classes.main}>
         <div className={classes.content}>
-            <span className={classes.large}>Men</span>
-            <span className={classes.medium}>Spring 2023</span>
+          <span className={classes.large}>{props.heading ? props.heading : "Headphones"}</span>
+          <span className={classes.medium}>{props.subHeading ? props.subHeading :"New Arrivals"}</span>
         </div>
         <div className={classes.image}>
-            <img  src={men} alt="" />
+          <img className={classes.actualImage} src={props.banner ? props.banner : banner} alt="" />
         </div>
-    </div>
-  )
-}
+      </div>
+      </Link>
+  );
+};
 
-export default Card
+export default Card;

@@ -10,7 +10,7 @@ const Hero = () => {
         <span className={classes.Large}>New Arrival</span>
         <span className={classes.button}>Shop Now</span>
       </div>
-      <div className={classes.banner}><img src={banner} alt="" /></div>
+      <div className={classes.banner}><img className={classes.actualImage} src={banner} alt="" /></div>
     </div>
   );
 };

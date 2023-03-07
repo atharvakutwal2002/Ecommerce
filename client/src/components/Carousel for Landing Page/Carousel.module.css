@@ -1,0 +1,12 @@
+.mob{
+    display: none;
+}
+
+@media(max-width:768px){
+    .regular{
+        display: none;
+    }
+    .mob{
+        display: block;
+    }
+}

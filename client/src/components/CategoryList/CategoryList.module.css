@@ -1,0 +1,12 @@
+.cards{
+    width: 100vw;
+    overflow-x: scroll;
+    display: flex;
+}
+
+@media(max-width:768px){
+    .cards{
+        width: 100%;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,51 @@
+.main {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.button {
+  width: 200px;
+  padding: 7px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+.button:hover {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
+}
+
+.large {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.colouredText {
+  color: red;
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+@media(max-width:768px){
+    .large{
+        font-size: 24px;
+    }
+
+    .button{
+        margin-bottom: 10px;
+    }
+}
