@@ -32,6 +32,7 @@ exports.addItemTocart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: userId });
     const product = await Product.findById(productId);
+    
 
     if (!product) {
       return res.status(404).json({ message: "Product does not exist." });
@@ -39,6 +40,8 @@ exports.addItemTocart = async (req, res) => {
 
     const price = product.price;
     const name = product.name;
+    const image= product.imageLink;
+
 
     if (cart) {
       let itemIndex = cart.items.findIndex((p) => p.productId == productId);
@@ -47,7 +50,7 @@ exports.addItemTocart = async (req, res) => {
         productItem.quantity += quantity;
         cart.items[itemIndex] = productItem;
       } else {
-        cart.items.push({ productId, name, quantity, price });
+        cart.items.push({ productId, name, quantity, price ,image });
       }
       cart.bill += (quantity ? quantity : 1) * price;
       cart = await cart.save();
@@ -55,7 +58,7 @@ exports.addItemTocart = async (req, res) => {
     } else {
       const newCart = await Cart.create({
         userId,
-        items: [{ productId, name, quantity, price }],
+        items: [{ productId, name, quantity, price, image}],
         bill: quantity * price,
       });
       return res.status(201).send(newCart);

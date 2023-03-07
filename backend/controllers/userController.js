@@ -44,3 +44,13 @@ exports.getUsers = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
+exports.getUser = async (req, res) => {
+  const { id: userId } = req.params;
+  try {
+    const user = await User.findOne({ _id: userId });
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};

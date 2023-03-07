@@ -32,6 +32,9 @@ app
   .get(userController.getUsers)
   .delete(userController.deleteUser);
 
+
+app.route('/user/:id').get(userController.getUser);
+
 // app.route("/user/:id").delete(userController.deleteUser);
 
 // app

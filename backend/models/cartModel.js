@@ -25,6 +25,7 @@ const cartSchema = mongoose.Schema({
         default: 1,
       },
       price: Number,
+      image:String
     },
   ],
   bill: {
