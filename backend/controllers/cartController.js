@@ -2,19 +2,20 @@ const Cart = require("./../models/cartModel");
 const Product = require("./../models/productModel");
 
 exports.getCartItems = async (req, res) => {
-  const { id: userId } = req.params;
-
+  const  userId  = req.params.id;
+  console.log(userId)
   try {
-    const cart = await Cart.findOne({ user: userId });
+    const cart = await Cart.findOne({ userId });
+    console.log(cart);
 
     if (!cart) {
       return res.status(400).json({ message: "Cart does not exist." });
     }
 
     if (cart && cart.items.length > 0) {
-      res.send(cart);
+      res.json({cart});
     } else {
-      res.send(null);
+      res.json(null);
     }
 
     // await cart.populate("products");
@@ -27,10 +28,11 @@ exports.getCartItems = async (req, res) => {
 };
 
 exports.addItemTocart = async (req, res) => {
-  const { id: userId } = req.params;
+  const userId = req.params.id;
+  console.log(userId);
   const { productId, quantity } = req.body;
   try {
-    const cart = await Cart.findOne({ user: userId });
+    let cart = await Cart.findOne({ userId });
     const product = await Product.findById(productId);
     
 
@@ -53,7 +55,7 @@ exports.addItemTocart = async (req, res) => {
         cart.items.push({ productId, name, quantity, price ,image });
       }
       cart.bill += (quantity ? quantity : 1) * price;
-      cart = await cart.save();
+      await cart.save();
       res.json({ cart });
     } else {
       const newCart = await Cart.create({
@@ -61,11 +63,10 @@ exports.addItemTocart = async (req, res) => {
         items: [{ productId, name, quantity, price, image}],
         bill: quantity * price,
       });
+      console.log(newCart);
       return res.status(201).send(newCart);
     }
-    // cart.products.push(product._id);
-
-    // await cart.save();
+   
   } catch (error) {
     console.log(error)
     res.status(400).send(error);
@@ -105,11 +106,11 @@ exports.removeItemFromCart = async (req, res) => {
   const { id: userId } = req.params;
   const { productId } = req.body;
   try {
-    const cart = await Cart.findOne({ user: userId });
+    const cart = await Cart.findOne({ userId });
     if (!cart) {
       return res.status(404).send("Cart does not exist");
     }
-    const itemIndex = cart.items.findIndex((p) => p.productId == productId);
+    const itemIndex = cart.items.findIndex((p) => p.productId === productId);
     if (itemIndex > -1) {
       const productItem = cart.items[itemIndex];
       cart.bill -= productItem.quantity * productItem.price;

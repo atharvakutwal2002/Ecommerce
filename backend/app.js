@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors')
+const cors = require("cors");
 const app = express();
 const productController = require("./controllers/productController");
 const orderController = require("./controllers/orderController");
@@ -24,7 +24,7 @@ app
 
 // app.route("/products/:id").delete(productController.deleteProduct);
 
-app.route("/product/:id").get(productController.getSingleProduct)
+app.route("/product/:id").get(productController.getSingleProduct);
 
 app
   .route("/users")
@@ -32,8 +32,7 @@ app
   .get(userController.getUsers)
   .delete(userController.deleteUser);
 
-
-app.route('/user/:id').get(userController.getUser);
+app.route("/user/:id").get(userController.getUser);
 
 // app.route("/user/:id").delete(userController.deleteUser);
 
@@ -46,12 +45,17 @@ app
   .route("/cart/:id")
   .post(authController.protect, cartController.addItemTocart)
   .get(authController.protect, cartController.getCartItems)
-  .delete(authController.protect,cartController.removeItemFromCart);
+  .delete(authController.protect, cartController.removeItemFromCart);
 // .patch(authController.protect, cartController.addItemTocart)
+
+// app
+//   .route("/order/:id")
+//   .get(orderController.get_orders)
+//   .post(orderController.checkout);
 
 app
   .route("/order/:id")
-  .get(orderController.get_orders)
-  .post(orderController.checkout);
+  .post(orderController.createOrder)
+  .get(orderController.getOrders);
 
 module.exports = app;
