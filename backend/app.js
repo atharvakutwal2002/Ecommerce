@@ -45,7 +45,7 @@ app
   .route("/cart/:id")
   .post(authController.protect, cartController.addItemTocart)
   .get(authController.protect, cartController.getCartItems)
-  .delete(authController.protect, cartController.removeItemFromCart);
+  .delete( cartController.removeItemFromCart);
 // .patch(authController.protect, cartController.addItemTocart)
 
 // app
