@@ -15,8 +15,12 @@ exports.get_orders = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
   const userId = req.params.id;
+  let cart = await Cart.findOne({ userId });
   try {
     const newOrder = await Order.create({ userId, ...req.body });
+    cart.items= [];
+    cart.bill=0;
+    await cart.save();
     res.status(200).json({ newOrder });
   } catch (error) {
     console.log(error);
