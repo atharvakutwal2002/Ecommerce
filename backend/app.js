@@ -13,6 +13,10 @@ app.use(express.json());
 app.use(errorHandler);
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("<h1>Hello!</h1>")
+})
+
 app.route("/signup").post(authController.signup);
 app.route("/login").post(authController.login);
 
