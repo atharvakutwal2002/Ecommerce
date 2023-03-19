@@ -1,0 +1,9 @@
+.main {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  box-shadow: 2px 2px 4px solid grey;
+  padding: 80px 0px;
+  
+}
