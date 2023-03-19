@@ -19,15 +19,23 @@
 .content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
+  width: 270px;
+  height: 28px;
+  overflow: hidden;
   font-size: 24px;
   font-weight: 500;
+  margin: 10px 0px;
+  text-align: center;
 }
 .price {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
+  color: #888888;
 }
 
 .actualImage {

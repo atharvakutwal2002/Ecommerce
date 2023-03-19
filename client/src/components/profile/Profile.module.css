@@ -53,3 +53,25 @@
     color: red;
     border: 2px solid red;
   }
+
+  .orders{
+    width: 100vw;
+  }
+
+.orderButton{
+    width: 200px;
+    padding: 7px;
+    cursor: pointer;
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.orderButton:hover{
+    background-color: red;
+    color: white;
+    border: 2px solid white;
+}
+

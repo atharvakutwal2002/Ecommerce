@@ -1,10 +1,26 @@
 .main {
   background-color: rgb(189, 189, 189);
   display: flex;
-  justify-content: center;
-  gap: 10%;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
-  background-image: linear-gradient(grey, rgb(189, 189, 189));
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gradient{
+  background: linear-gradient(0deg, rgba(0, 8, 68, 0.7) 0%, rgba(255,255,255,0) 100%);
+  z-index: 15;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.gradient:hover{
+  background: linear-gradient(0deg, rgba(0, 8, 68, 0.5) 0%, rgba(255,255,255,0) 100%);
 }
 
 .content {
@@ -12,20 +28,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  z-index: 20;
+  position: absolute;
+  right: 22%;
+  top: 28%;
 }
 
 .Large {
   font-size: 40px;
   font-weight: 800;
   font-family: cursive;
+  color: white;
 }
 .medium {
   font-size: 25px;
   font-weight: 400;
+  color: rgb(220, 52, 52);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .button {
-  background-color: rgb(113, 127, 225);
+  background-color: rgb(230, 50, 50);
   color: white;
   padding: 5px;
   border-radius: 20px;
@@ -33,23 +56,30 @@
   width: 100px;
   cursor: pointer;
   border: 2px solid transparent;
+  text-align: center;
 }
 .button:hover {
-  background-color: white;
+  background-color: rgb(229, 67, 67);
   color: rgb(113, 127, 225);
-  border: 2px solid rgb(113, 127, 225);
+  border: 2px solid rgb(229, 67, 67);
 }
 
 .banner {
-  width: 30%;
-  height: 70vh;
   object-fit: cover;
   overflow: hidden;
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
 }
 
 .actualImage {
   width: 100%;
-  object-fit: cover;
+  height: 100%;
+  background-size: cover;
+  position: absolute;
+  left:0;
+  top: 0;
+  object-fit:fill;
 }
 
 @media (max-width: 768px) {

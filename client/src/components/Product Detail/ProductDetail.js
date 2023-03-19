@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./ProductDetail.module.css";
 import StarRatings from "react-star-ratings";
 import { getSingleProduct } from "../../API/EcommerceApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addToCart } from "../../API/EcommerceApi";
 import Loader from "../../utils/Loader/Loader";
 
@@ -20,6 +20,7 @@ const PRODUCT = {
 };
 
 const ProductDetail = () => {
+  const navigate =useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [productLoading, setProductLoading] = useState(true);
@@ -33,9 +34,14 @@ const ProductDetail = () => {
   }, []);
 
   const handleAddTocart = async () => {
+    setProductLoading(true)
     const obj = { productId: product._id, quantity: 1 };
     const response = await addToCart(obj);
     console.log(response);
+    if (response.status===200) {
+      navigate(`/cart/${localStorage.getItem('userId')}`)
+      setProductLoading(false);
+    }
   };
 
   return (

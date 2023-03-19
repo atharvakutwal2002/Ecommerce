@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Cart.module.css";
 import Card from "./Card/Card";
-import { getCartItems } from "../../API/EcommerceApi";
+import { getCartItems, postOrder } from "../../API/EcommerceApi";
 import Loader from "../../utils/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const DUMMY_CART = {
   _id: "64075a5446d11583a15a3e2a",
@@ -31,26 +32,41 @@ const DUMMY_CART = {
 };
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   const [cart, setCart] = useState({});
   const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getCartItems().then((res) => {
-      console.log(res);
-      setCart(res.data);
+      setCart(res.data !== null && res.data.cart !== null ? res.data.cart : {});
+
       setIsLoading(false);
     });
   }, []);
 
+  const placeOrder = async () => {
+    setIsLoading(true);
+    const obj = { bill: cart.bill, items: cart.items };
+    const res = await postOrder(obj);
+    console.log(res);
+    if (res.status === 200) {
+      navigate("/profile");
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
-      {!isloading ?(
+      {!isloading ? (
         <div className={classes.main}>
           <span className={classes.large}>
             Your <span className={classes.colouredText}> Cart</span>{" "}
           </span>
           <div className={classes.cards}>
-            {cart.items.length !== 0 &&
+            {cart &&
+              cart.items &&
+              cart.items.length > 0 &&
               cart.items.map((e, index) => {
                 return (
                   <Card
@@ -59,16 +75,36 @@ const Cart = () => {
                     price={e.price}
                     quantity={e.quantity}
                     name={e.name}
+                    productId={e.productId}
                   />
                 );
               })}
           </div>
-          <div className={classes.large}>
-            Total <span>{cart.bill && cart.bill}</span>
-          </div>
-          <button className={classes.button}>Place Order</button>
+
+          {cart && cart.items && cart.items.length > 0 ? (
+            <div className={classes.content}>
+              <div className={classes.large}>
+                Total <span>{cart.bill && cart.bill}</span>
+              </div>
+              <button onClick={placeOrder} className={classes.button}>
+                Place Order
+              </button>
+            </div>
+          ) : (
+            <div className={classes.content}>
+
+            <span className={classes.text}>Nothing in your cart </span>
+            <button onClick={e=>{navigate('/')}} className={classes.button}>Shop Now</button>
+            </div>
+          )}
         </div>
-      ):< Loader/>}
+      ) : (
+        <Loader />
+      )}
+      {/* {!cart ||
+        (cart && cart.items && cart.items.length === 0 && (
+          <span>Nothing in your cart </span>
+        ))} */}
     </>
   );
 };

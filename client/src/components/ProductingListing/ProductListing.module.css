@@ -1,0 +1,18 @@
+.main{
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    
+}
+
+@media(max-width:768px){
+    .main{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

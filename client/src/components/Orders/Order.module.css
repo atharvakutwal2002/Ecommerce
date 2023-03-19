@@ -1,0 +1,15 @@
+.orders{
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading{
+    font-size: 24px;
+    font-weight: 600;
+    color: red;
+    border-bottom: 1px solid #ccc;
+}

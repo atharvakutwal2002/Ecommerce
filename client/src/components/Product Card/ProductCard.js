@@ -24,7 +24,7 @@ const ProductCard = (props) => {
           {props.name ? props.name : "boAt Airdopes 381"}
         </span>
         <span className={classes.price}>
-          $ {props.price ? props.price : 1999}
+        ₹ {props.price ? props.price : 1999}
         </span>
         <span></span>
       </div>

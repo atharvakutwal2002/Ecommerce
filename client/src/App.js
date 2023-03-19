@@ -12,6 +12,8 @@ import ProductListing from "./components/ProductingListing/ProductListing";
 import Profile from "./components/profile/Profile";
 import Cart from "./components/Cart/Cart";
 import Loader from "./utils/Loader/Loader";
+import Order from "./components/Orders/Order";
+import UpperFooter from './components/UpperFooter/UpperFooter'
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/orders" element={<Order />} />
           
           <Route
             path="/profile"
@@ -46,6 +49,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
         </Routes>
       </div>
+      <UpperFooter/>
       <Footer />
     </Router>
   );

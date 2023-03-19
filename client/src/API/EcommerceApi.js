@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://ecommerce-backend-lj1k.onrender.com";
-// const baseUrl = "http://localhost:5000/";
+// const baseUrl = "http://localhost:5000";
 
 const headers = {
   "Content-Type": "application/json",
@@ -80,6 +80,25 @@ export const addToCart = async (obj) => {
     console.log(error);
   }
 };
+export const removeFromCart = async (obj) => {
+  const token = localStorage.getItem("token");
+console.log(obj)
+  try {
+    const response = axios.delete(
+      `${baseUrl}/cart/${localStorage.getItem("userId")}`,
+      {
+        data: JSON.stringify(obj),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getUserProfile = async () => {
   try {
@@ -96,11 +115,37 @@ export const getUserProfile = async () => {
 export const getCartItems = async () => {
   try {
     const response = await axios.get(
-      `${baseUrl}/cart/${localStorage.getItem("userId")}`,{headers:{
-        "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-      }}
+      `${baseUrl}/cart/${localStorage.getItem("userId")}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postOrder = async (obj) => {
+  const id = localStorage.getItem("userId");
+  try {
+    const response = await axios.post(`${baseUrl}/order/${id}`, obj, {
+      headers: { headers },
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getOrders = async () => {
+  const id = localStorage.getItem("userId");
+  try {
+    const response = await axios.get(`${baseUrl}/order/${id}`, {
+      headers: { headers },
+    });
     return response;
   } catch (error) {
     console.log(error);

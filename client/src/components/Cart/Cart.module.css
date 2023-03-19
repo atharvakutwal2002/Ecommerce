@@ -7,6 +7,19 @@
   gap: 20px;
 }
 
+.text{
+  font-size: 28px;
+}
+
+.content{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
 .button {
   width: 200px;
   padding: 7px;
