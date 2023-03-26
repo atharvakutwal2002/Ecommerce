@@ -13,11 +13,11 @@ app.use(express.json());
 app.use(errorHandler);
 app.use(cors());
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname, "client/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
 
 app.route("/signup").post(authController.signup);
 app.route("/login").post(authController.login);
