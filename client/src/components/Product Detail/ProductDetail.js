@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { addToCart } from "../../API/EcommerceApi";
 import Loader from "../../utils/Loader/Loader";
 
-
 const PRODUCT = {
   name: "airdopes 141",
   price: 999,
@@ -20,33 +19,44 @@ const PRODUCT = {
 };
 
 const ProductDetail = () => {
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [productLoading, setProductLoading] = useState(true);
 
   useEffect(() => {
     getSingleProduct(id).then((res) => {
-   
       setProduct(res.data);
       setProductLoading(false);
     });
   }, []);
 
   const handleAddTocart = async () => {
-    setProductLoading(true)
-    const obj = { productId: product._id, quantity: 1 };
-    const response = await addToCart(obj);
-    console.log(response);
-    if (response.status===200) {
-      navigate(`/cart/${localStorage.getItem('userId')}`)
-      setProductLoading(false);
+    setProductLoading(true);
+    if (localStorage.getItem("userId")) {
+      const obj = { productId: product._id, quantity: 1 };
+      const response = await addToCart(obj);
+      console.log(response);
+      if (response.status === 200) {
+        navigate(`/cart/${localStorage.getItem("userId")}`);
+        setProductLoading(false);
+      }
+    } else {
+      navigate("/login");
     }
+
+   
+    // if (response.status===200) {
+    //   navigate(`/cart/${localStorage.getItem('userId')}`)
+    //   setProductLoading(false);
+    // }else{
+    //   navigate('/login')
+    // }
   };
 
   return (
     <div>
-      {!productLoading ?(
+      {!productLoading ? (
         <div className={classes.main}>
           <div className={classes.imageDiv}>
             <img
@@ -72,11 +82,15 @@ const ProductDetail = () => {
             <div className={classes.pricing}>
               <div className={classes.price}>₹ {product.price} </div>
               <span className={classes.light}>Inclusive of all taxes</span>
-              <button onClick={handleAddTocart} className={classes.button}>ADD TO CART</button>
+              <button onClick={handleAddTocart} className={classes.button}>
+                ADD TO CART
+              </button>
             </div>
           </div>
         </div>
-      ) : <Loader/>}
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
