@@ -50,3 +50,22 @@ Link to the live app :
 https://boat-lifestyle-101.netlify.app/
 
 
+
+
+## Screenshots
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-2023-03-28-01_45_43.png?raw=true)
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-cart-6421c52f35debccc0fc79bd2-2023-03-28-01_48_02.png?raw=true)
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-login-2023-03-28-01_46_07.png?raw=true)
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-orders-2023-03-28-01_48_59.png?raw=true)
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-product-640f7f01653fa4394d3094ab-2023-03-28-01_47_45.png?raw=true)
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-products-wirelessheadphones-2023-03-28-01_47_28.png?raw=true)
+
+![App Screenshot](https://github.com/atharvakutwal2002/Ecommerce/blob/main/Screenshots%20of%20webpage/screencapture-localhost-3000-profile-2023-03-28-01_46_53.png?raw=true)
+
+
