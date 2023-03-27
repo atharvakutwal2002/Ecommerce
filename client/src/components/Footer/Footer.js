@@ -24,13 +24,13 @@ const Footer = () => {
       </span>
       <span className={classes.mid}>Made by Atharva with ❤</span>
       <div className={classes.links}>
-        <a className={classes.link} href="#">
+        <a className={classes.link} href="https://www.instagram.com/atharvakutwal2002/">
           <AiOutlineInstagram />
         </a>
-        <a className={classes.link} href="#">
+        <a className={classes.link} href="https://twitter.com/AtharvaKalyan">
           <AiOutlineTwitter />
         </a>
-        <a className={classes.link} href="#">
+        <a className={classes.link} href="https://www.linkedin.com/in/atharva-kutwal-588a8a219/">
           <AiFillLinkedin />
         </a>
       </div>
