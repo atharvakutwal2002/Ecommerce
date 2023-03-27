@@ -30,7 +30,6 @@ function App() {
             path="/profile"
             element={
               <RequireAuth>
-                {" "}
                 <Profile />
               </RequireAuth>
             }
