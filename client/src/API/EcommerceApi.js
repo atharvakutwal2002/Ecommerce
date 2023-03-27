@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://boat-lifestyle-101.onrender.com";
+const baseUrl = "https://ecommerce-backend-9p6f.onrender.com";
 // const baseUrl = "http://localhost:5000";
 
 const headers = {

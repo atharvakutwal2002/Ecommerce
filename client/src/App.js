@@ -39,7 +39,6 @@ function App() {
             path="/cart/:id"
             element={
               <RequireAuth>
-                {" "}
                 <Cart />
               </RequireAuth>
             }
